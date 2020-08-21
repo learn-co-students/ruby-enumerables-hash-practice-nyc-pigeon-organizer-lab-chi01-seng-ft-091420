@@ -1,22 +1,40 @@
 require 'pry'
 
 def nyc_pigeon_organizer(data)
-  pigeon_list = {}
-
-  data.each do |attribute_name, attributes|
-    attributes.each do |attribute_value, pigeon_names|
-      pigeon_names.each do |name|
-        pigeon_list[name] ||= {}
-        pigeon_list[name][attribute_name] ||= []
-        pigeon_list[name][attribute_name].push(attribute_value.to_s)
-      end
-    end 
+  pigeon_list = data.each_with_object({}) do |(attributes, values), result_array|
+    values.each do |stat_values, names|
+      names.each do |name|
+    if !result_array[name]
+      result_array[name] = {}
+    end
+    if !result_array[name][attributes]
+      result_array[name][attributes] = []
+   end
+     result_array[name][attributes].push(stat_values.to_s)
+   end
   end
-
-  pigeon_list
+end
+pigeon_list
 end
 
+# def nyc_pigeon_organizer(data)
+#   pigeon_list = {}
 
+#   data.each do |attribute_name, attributes|
+#     attributes.each do |attribute_value, pigeon_names|
+#       pigeon_names.each do |name|
+#         pigeon_list[name] ||= {}
+#         pigeon_list[name][attribute_name] ||= []
+#         pigeon_list[name][attribute_name].push(attribute_value.to_s)
+#       end
+#     end 
+#   end
+
+#   pigeon_list
+# end
+
+
+  
 # def nyc_pigeon_organizer(data)
 #   new_hash = {}
 #   data.each do |key, value|
@@ -57,29 +75,3 @@ end
 # end
 # pigeon_list
 # end
-
-
-
-
-
-
-pigeon_data = {
-  :color => {
-    :purple => ["Theo", "Peter Jr.", "Lucky"],
-    :grey => ["Theo", "Peter Jr.", "Ms. K"],
-    :white => ["Queenie", "Andrew", "Ms. K", "Alex"],
-    :brown => ["Queenie", "Alex"]
-  },
-  :gender => {
-    :male => ["Alex", "Theo", "Peter Jr.", "Andrew", "Lucky"],
-    :female => ["Queenie", "Ms. K"]
-  },
-  :lives => {
-    "Subway" => ["Theo", "Queenie"],
-    "Central Park" => ["Alex", "Ms. K", "Lucky"],
-    "Library" => ["Peter Jr."],
-    "City Hall" => ["Andrew"]
-  }
-}
-
-nyc_pigeon_organizer(pigeon_data)

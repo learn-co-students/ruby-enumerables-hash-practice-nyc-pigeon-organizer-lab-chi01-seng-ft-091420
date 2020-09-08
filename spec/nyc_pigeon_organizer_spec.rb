@@ -226,3 +226,17 @@ describe "NYC Pigeon Organizer" do
     end
   end # method
 end # suite
+pigeon_data = {
+  :color => {
+    :brown => ["Luca"],
+    :black => ["Lola"],
+  },
+  :gender => {
+    :male => ["Luca"],
+    :female => ["Lola"]
+  },
+  :lives => {
+    "Central Park" => ["Lola"],
+    "Library" => ["Luca"]
+  }
+}
